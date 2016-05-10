@@ -1,9 +1,10 @@
 
-public class Gamestate {
+public class Gamestate
+{
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+	public static void main(String[] args)
+	{
+		Level level1 = new Level();
 	}
 
 }
