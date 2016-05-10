@@ -1,5 +1,8 @@
 
-public class Level {
-	System.out.println("Hello");
-	System.out.println("Testing github");
+public class Level
+{
+	private int difficulty;
+	private int length;
+	private int numPlatforms;
+	private int numHoles;
 }
