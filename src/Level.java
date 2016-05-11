@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Level
 {
 	private String name;
-	private char [][] bricks;
+	private boolean [][] bricks;
 
 	public Level()
 	{
@@ -16,25 +16,39 @@ public class Level
 		int length = file.nextInt();
 		file.nextLine();
 		String [] rows = new String[height];
-		bricks = new char[height][length];
+		bricks = new boolean[height][length];
 		for (int i = 0; i < height; i++)
 		{
 			rows[i] = file.nextLine();
 			for (int j = 0; j < length; j++)
 			{
-				bricks[i][j] = rows[i].charAt(j);
+				boolean isABrick;
+				if (rows[i].charAt(j) == 'X')
+				{
+					isABrick = true;
+				}
+				else
+					isABrick = false;
+				bricks[i][j] = isABrick;
 			}
 		}
 		printBricks(bricks);
 	}
 
-	public void printBricks(char[][] grid)
+	public void printBricks(boolean[][] grid)
 	{
 		for (int i = 0; i < grid.length; i++)
 		{
 			for (int j = 0; j < grid[0].length; j++)
 			{
-				System.out.print(grid[i][j]);
+				if (grid[i][j])
+				{
+					System.out.print('X');
+				}
+				else
+				{
+					System.out.print('~');
+				}
 			}
 			System.out.println();
 		}
