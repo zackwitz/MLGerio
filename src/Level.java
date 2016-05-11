@@ -5,15 +5,26 @@ import java.util.Scanner;
 
 public class Level
 {
+	private String name;
 	private char [][] bricks;
-	
-	public Level(int height, int width)
+
+	public Level()
 	{
 		Scanner file = openTheFile();
-		String name1 = file.nextLine();
-		System.out.println(name1);
+		name = file.nextLine();
+		int height = 10;
+		int length = file.nextInt();
+		String [] rows = new String[height];
+		for (int i = 0; i < height; i++)
+		{
+			rows[i] = file.nextLine();
+		}
+		for (String row: rows)
+		{
+			System.out.println(row);
+		}
 	}
-	
+
 	private static Scanner openTheFile()
 	{
 		Scanner file = null;
