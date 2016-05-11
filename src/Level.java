@@ -17,6 +17,8 @@ public class Level
 		file.nextLine();
 		String [] rows = new String[height];
 		bricks = new boolean[height][length];
+		
+		//fill each space in the level grid with true if brick or else false
 		for (int i = 0; i < height; i++)
 		{
 			rows[i] = file.nextLine();
@@ -24,9 +26,7 @@ public class Level
 			{
 				boolean isABrick;
 				if (rows[i].charAt(j) == 'X')
-				{
 					isABrick = true;
-				}
 				else
 					isABrick = false;
 				bricks[i][j] = isABrick;
@@ -35,13 +35,13 @@ public class Level
 		printBricks(bricks);
 	}
 
-	public void printBricks(boolean[][] grid)
+	public void printBricks(boolean[][] level)
 	{
-		for (int i = 0; i < grid.length; i++)
+		for (int i = 0; i < level.length; i++)
 		{
-			for (int j = 0; j < grid[0].length; j++)
+			for (int j = 0; j < level[0].length; j++)
 			{
-				if (grid[i][j])
+				if (level[i][j])
 				{
 					System.out.print('X');
 				}
