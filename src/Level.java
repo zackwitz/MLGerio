@@ -12,19 +12,34 @@ public class Level
 	{
 		Scanner file = openTheFile();
 		name = file.nextLine();
-		int height = 10;
+		int height = file.nextInt();
 		int length = file.nextInt();
+		file.nextLine();
 		String [] rows = new String[height];
+		bricks = new char[height][length];
 		for (int i = 0; i < height; i++)
 		{
 			rows[i] = file.nextLine();
+			for (int j = 0; j < length; j++)
+			{
+				bricks[i][j] = rows[i].charAt(j);
+			}
 		}
-		for (String row: rows)
-		{
-			System.out.println(row);
-		}
+		printBricks(bricks);
 	}
 
+	public void printBricks(char[][] grid)
+	{
+		for (int i = 0; i < grid.length; i++)
+		{
+			for (int j = 0; j < grid[0].length; j++)
+			{
+				System.out.print(grid[i][j]);
+			}
+			System.out.println();
+		}
+	}
+	
 	private static Scanner openTheFile()
 	{
 		Scanner file = null;
@@ -41,4 +56,5 @@ public class Level
 		}
 		return file;
 	}
+	
 }
