@@ -31,6 +31,11 @@ public class Gamestate extends JFrame
 		
 		Level level1 = new Level();
 		boolean [][] bricks = level1.getBricks();
+		paintBricks(g, bricks);
+	}
+	
+	public void paintBricks(Graphics g, boolean [][] bricks)
+	{
 		for (int row = 0; row < (FRAME_HEIGHT / BLOCK_SIDE); row++)
 		{
 			for (int col = 0; col < (FRAME_WIDTH / BLOCK_SIDE); col++)
