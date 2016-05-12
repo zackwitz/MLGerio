@@ -21,11 +21,11 @@ public class Gamestate extends JFrame
 
 	public void paint(Graphics g) 		
 	{
+		//draw outline of grid
 		for (int i = 0; i < FRAME_WIDTH; i += BLOCK_SIDE)
 		{
 			g.drawLine(i, 0, i, FRAME_HEIGHT);
 		}
-		
 		for (int j = 0; j < FRAME_HEIGHT; j += BLOCK_SIDE)
 		{
 			g.drawLine(0, j, FRAME_WIDTH, j);
