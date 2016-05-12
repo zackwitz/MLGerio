@@ -28,6 +28,19 @@ public class Gamestate extends JFrame
 		{
 			g.drawLine(0, j, FRAME_WIDTH, j);
 		}
+		
+		Level level1 = new Level();
+		boolean [][] bricks = level1.getBricks();
+		for (int row = 0; row < (FRAME_HEIGHT / BLOCK_SIDE); row++)
+		{
+			for (int col = 0; col < (FRAME_WIDTH / BLOCK_SIDE); col++)
+			{
+				if (bricks[row][col])
+				{
+					g.fillRect(BLOCK_SIDE * col, BLOCK_SIDE * row,
+							BLOCK_SIDE, BLOCK_SIDE);
+				}
+			}
+		}
 	}
-	
 }
