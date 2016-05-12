@@ -34,6 +34,11 @@ public class Level
 		}
 		printBricks(bricks);
 	}
+	
+	public boolean [][] getBricks()
+	{
+		return bricks;
+	}
 
 	public void printBricks(boolean[][] level)
 	{
