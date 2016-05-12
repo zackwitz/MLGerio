@@ -1,9 +1,12 @@
+import java.awt.*;						
+import javax.swing.*;
 
-public class Gamestate {
+public class Gamestate extends JFrame
+{
 
-	public static void main(String[] args) {
-	System.out.println("Hello friends. Gamestate is working.");
-
+	public static void main(String[] args)
+	{
+		
 	}
 
 }
