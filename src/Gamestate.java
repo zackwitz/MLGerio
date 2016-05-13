@@ -25,7 +25,7 @@ public class Gamestate extends JFrame
 
 		Level level1 = new Level();
 		boolean [][] bricks = level1.getBricks();
-		paintBricksFrom(g, bricks, 000);
+		paintBricksFrom(g, bricks, 20);
 	}
 
 
@@ -40,7 +40,7 @@ public class Gamestate extends JFrame
 		{
 			start = 0;
 		}
-		int bricksBeforeStart = start / BLOCK_SIDE;
+		final int BLOCKS_BEFORE_START = start / BLOCK_SIDE;
 
 		//draw outline of grid
 		for (int i = start % BLOCK_SIDE; i < FRAME_WIDTH; i += BLOCK_SIDE)
@@ -57,11 +57,12 @@ public class Gamestate extends JFrame
 		{
 			for (int col = 0; col < BLOCKS_HOR; col++)
 			{
-				if (col + bricksBeforeStart < bricks[0].length)
+				if (col + BLOCKS_BEFORE_START < bricks[0].length)
 				{
-					if (bricks[row][col + bricksBeforeStart])
+					if (bricks[row][col + BLOCKS_BEFORE_START])
 					{
-						g.fillRect(BLOCK_SIDE * col, BLOCK_SIDE * row,
+						g.fillRect(BLOCK_SIDE * col + start % BLOCK_SIDE
+								- BLOCK_SIDE, BLOCK_SIDE * row,
 								BLOCK_SIDE, BLOCK_SIDE);
 					}
 				}
