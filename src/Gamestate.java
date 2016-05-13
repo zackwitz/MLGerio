@@ -23,7 +23,7 @@ public class Gamestate extends JFrame
 	{
 		Level level1 = new Level();
 		boolean [][] bricks = level1.getBricks();
-		paintBricksFrom(g, bricks, 30);
+		paintBricksFrom(g, bricks, 2200);
 	}
 
 
@@ -67,6 +67,11 @@ public class Gamestate extends JFrame
 								BLOCK_SIDE * row, BLOCK_SIDE, BLOCK_SIDE);
 					}
 				}
+			}
+			if (bricks[row][BLOCKS_HOR + BLOCKS_BEFORE_START])
+			{
+				g.fillRect(FRAME_WIDTH - (start % BLOCK_SIDE),
+						BLOCK_SIDE * row, start % BLOCK_SIDE, BLOCK_SIDE);
 			}
 			start += BLOCK_SIDE;
 		}
