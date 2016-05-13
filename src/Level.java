@@ -40,6 +40,11 @@ public class Level
 		return bricks;
 	}
 
+	public int length()
+	{
+		return bricks[0].length;
+	}
+	
 	public void printBricks(boolean[][] level)
 	{
 		for (int i = 0; i < level.length; i++)

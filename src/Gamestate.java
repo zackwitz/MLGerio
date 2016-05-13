@@ -7,6 +7,8 @@ public class Gamestate extends JFrame
 	final static int FRAME_WIDTH = 1200;
 	final static int FRAME_HEIGHT = 750;
 	final static int BLOCK_SIDE = 75;
+	final static int BLOCKS_VERT = FRAME_HEIGHT / BLOCK_SIDE;
+	final static int BLOCKS_HOR = FRAME_WIDTH / BLOCK_SIDE;
 
 	public static void main(String[] args)
 	{
@@ -23,7 +25,7 @@ public class Gamestate extends JFrame
 
 		Level level1 = new Level();
 		boolean [][] bricks = level1.getBricks();
-		paintBricksFrom(g, bricks, 200);
+		paintBricksFrom(g, bricks, 300);
 	}
 
 
@@ -48,17 +50,19 @@ public class Gamestate extends JFrame
 		{
 			g.drawLine(0, j, FRAME_WIDTH, j);
 		}
-		for (int row = 0; row < (FRAME_HEIGHT / BLOCK_SIDE); row++)
-		{
-			for (int col = 0; col < (FRAME_WIDTH / BLOCK_SIDE); col++)
-			{
-				if (bricks[start / BLOCK_SIDE][col])
-				{
-					g.fillRect(BLOCK_SIDE * col, BLOCK_SIDE * row,
-							BLOCK_SIDE, BLOCK_SIDE);
-				}
-				start += BLOCK_SIDE;
-			}
-		}
+
+		//fill in correct spaces
+		//		for (int row = 0; row < BLOCKS_VERT; row++)
+		//		{
+		//			for (int col = 0; col < (BLOCKS_HOR); col++)
+		//			{
+		//				if (bricks[start / BLOCK_SIDE][col])
+		//				{
+		//					g.fillRect(BLOCK_SIDE * col, BLOCK_SIDE * row,
+		//							BLOCK_SIDE, BLOCK_SIDE);
+		//				}
+		//				start += BLOCK_SIDE;
+		//			}
+		//		}
 	}
 }
