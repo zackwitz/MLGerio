@@ -23,8 +23,7 @@ public class Gamestate extends JFrame
 	{
 		Level level1 = new Level();
 		boolean [][] bricks = level1.getBricks();
-		int i = 75;
-		paintBricksFrom(g, bricks, i);
+		paintBricksFrom(g, bricks, 30);
 	}
 
 
