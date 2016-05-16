@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
+<<<<<<< Updated upstream
 
 public class Level
 {
@@ -147,4 +148,10 @@ public class Level
 		return file;
 	}
 	
+=======
+public class Level {
+	System.out.println("Hello");
+	System.out.println("Testing github");
+
+>>>>>>> Stashed changes
 }
