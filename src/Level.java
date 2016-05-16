@@ -1,3 +1,5 @@
+import java.awt.Color;
+import java.awt.Graphics;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
@@ -5,11 +7,20 @@ import java.util.Scanner;
 
 public class Level
 {
+	final static int FRAME_WIDTH = 1200;
+	final static int FRAME_HEIGHT = 750;
+	final static int BLOCK_SIDE = 75;
+	final static int BLOCKS_VERT = FRAME_HEIGHT / BLOCK_SIDE;
+	final static int BLOCKS_HOR = FRAME_WIDTH / BLOCK_SIDE;
+	final static int MOVE_LEVEL_BY = 15;
+	
 	private String name;
 	private boolean [][] bricks;
+	private int paintLevelFrom;
 
 	public Level()
 	{
+		paintLevelFrom = 0;
 		Scanner file = openTheFile();
 		name = file.nextLine();
 		int height = file.nextInt();
@@ -40,6 +51,65 @@ public class Level
 		return bricks;
 	}
 
+	public void moveRight()
+	{
+		paintLevelFrom += MOVE_LEVEL_BY;
+	}
+	
+	public void moveLeft()
+	{
+		paintLevelFrom -= MOVE_LEVEL_BY;
+	}
+	
+	public void paintBricks(Graphics g)
+	{
+		int start = paintLevelFrom;
+		g.setColor(Color.white);
+		g.fillRect(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
+		if (start > bricks[0].length * BLOCK_SIDE)
+		{
+			start = bricks[0].length * BLOCK_SIDE;
+		}
+		else if (start < 0)
+		{
+			start = 0;
+		}
+		final int BLOCKS_BEFORE_START = start / BLOCK_SIDE;
+
+		//draw outline of grid
+		g.setColor(Color.black);
+		for (int i = BLOCK_SIDE - (start % BLOCK_SIDE); i < FRAME_WIDTH;
+				i += BLOCK_SIDE)
+		{
+			g.drawLine(i, 0, i, FRAME_HEIGHT);
+		}
+		for (int j = 0; j < FRAME_HEIGHT; j += BLOCK_SIDE)
+		{
+			g.drawLine(0, j, FRAME_WIDTH, j);
+		}
+
+		//fill in correct spaces
+		for (int row = 0; row < BLOCKS_VERT; row++)
+		{
+			for (int col = 0; col < BLOCKS_HOR; col++)
+			{
+				if (col + BLOCKS_BEFORE_START < bricks[0].length)
+				{
+					if (bricks[row][col + BLOCKS_BEFORE_START])
+					{
+						g.fillRect(BLOCK_SIDE * col - (start % BLOCK_SIDE),
+								BLOCK_SIDE * row, BLOCK_SIDE, BLOCK_SIDE);
+					}
+				}
+			}
+			if (bricks[row][BLOCKS_HOR + BLOCKS_BEFORE_START])
+			{
+				g.fillRect(FRAME_WIDTH - (start % BLOCK_SIDE),
+						BLOCK_SIDE * row, start % BLOCK_SIDE, BLOCK_SIDE);
+			}
+			start += BLOCK_SIDE;
+		}
+	}
 	
 	public void printBricks(boolean[][] level)
 	{
