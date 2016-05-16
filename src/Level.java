@@ -12,7 +12,7 @@ public class Level
 	final static int BLOCK_SIDE = 75;
 	final static int BLOCKS_VERT = FRAME_HEIGHT / BLOCK_SIDE;
 	final static int BLOCKS_HOR = FRAME_WIDTH / BLOCK_SIDE;
-	final static int MOVE_LEVEL_BY = 15;
+	final static int MOVE_LEVEL_BY = 25;
 	
 	private String name;
 	private boolean [][] bricks;
@@ -75,18 +75,18 @@ public class Level
 			start = 0;
 		}
 		final int BLOCKS_BEFORE_START = start / BLOCK_SIDE;
-
-		//draw outline of grid
 		g.setColor(Color.black);
-		for (int i = BLOCK_SIDE - (start % BLOCK_SIDE); i < FRAME_WIDTH;
-				i += BLOCK_SIDE)
-		{
-			g.drawLine(i, 0, i, FRAME_HEIGHT);
-		}
-		for (int j = 0; j < FRAME_HEIGHT; j += BLOCK_SIDE)
-		{
-			g.drawLine(0, j, FRAME_WIDTH, j);
-		}
+		
+		//draw outline of grid
+//		for (int i = BLOCK_SIDE - (start % BLOCK_SIDE); i < FRAME_WIDTH;
+//				i += BLOCK_SIDE)
+//		{
+//			g.drawLine(i, 0, i, FRAME_HEIGHT);
+//		}
+//		for (int j = 0; j < FRAME_HEIGHT; j += BLOCK_SIDE)
+//		{
+//			g.drawLine(0, j, FRAME_WIDTH, j);
+//		}
 
 		//fill in correct spaces
 		for (int row = 0; row < BLOCKS_VERT; row++)
