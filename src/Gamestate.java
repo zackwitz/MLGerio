@@ -30,7 +30,6 @@ public class Gamestate extends JFrame
 
 	public void paintBricksFrom(Graphics g, boolean [][] bricks, int start)
 	{
-		System.out.println("start = " + start);
 		g.setColor(Color.white);
 		g.fillRect(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
 		if (start > bricks[0].length * BLOCK_SIDE)
