@@ -16,6 +16,7 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 	private static Level level1;
 	public static final Image imageRight = new ImageIcon("MerioRight.png").getImage();
 	public static final Image imageLeft = new ImageIcon("MerioLeft.png").getImage();
+	public static final Character merio = new Character();
 	private static boolean facingRight = true;
 
 	public Gamestate()
@@ -23,7 +24,7 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 		Timer clock = new Timer(DELAY_IN_MILLISEC, this);
 		clock.start();
 	}
-	
+
 	public static void main(String[] args)
 	{
 		Gamestate gs = new Gamestate();
@@ -33,7 +34,7 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 		gs.setVisible(true);
 		gs.addKeyListener(gs);
 		level1 = new Level();
-		
+
 	}	
 	public void actionPerformed(ActionEvent e)
 	{
@@ -47,39 +48,39 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 		{
 			level1.moveRight();
 			facingRight = true;
+			merio.changeXPos(facingRight);
 		}
 		else if(keyCode == KeyEvent.VK_LEFT)
 		{
 			level1.moveLeft();
 			facingRight = false;
+			merio.changeXPos(facingRight);
 		}
 		else if(keyCode == KeyEvent.VK_SPACE)
 		{
 			// jump
 		}
 	}
-	
+
 	public void keyTyped(KeyEvent e)
 	{
 	}
-	
+
 	public void keyReleased(KeyEvent e)
 	{
 	}
-	
+
 	public void paint(Graphics g) 		
 	{
 		if(facingRight)
 		{
-		g.drawImage(imageRight,563, 600, this);
-		level1.paintBricks(g);
-		g.drawImage(imageRight,563, 600, this);
+			level1.paintBricks(g);
+			g.drawImage(imageRight, 563, merio.getY(), this);
 		}
 		else
 		{
-			g.drawImage(imageLeft,563, 600, this);
 			level1.paintBricks(g);
-			g.drawImage(imageLeft,563, 600, this);
+			g.drawImage(imageLeft, 563, merio.getY(), this);
 		}
 	}
 
