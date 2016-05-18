@@ -2,7 +2,8 @@ import java.awt.Graphics;
 import java.util.*;
 import javax.swing.*;
 
-public class Character implements JFrame {
+public class Character extends JFrame
+{
 
 	private final int SIZE = 75;
 	private final int JUMP_STRENGTH = 24;
