@@ -10,17 +10,34 @@ public class Character extends JFrame
 	private int accel = 0;
 	private int x;
 	private int y;
-	private boolean jumping = false;
+	private boolean jumping;
+	private boolean onABrick;
 
 	public Character (int initX, int initY)
 	{
 		x = initX;
 		y = initY;
+		jumping = false;
+		onABrick = false;
 	}
 
 	public int getY ()
 	{
 		return y;
+	}
+	
+	public void falling()
+	{
+		int changeInY = 0;
+		while (!onABrick)
+		{
+			y += changeInY;
+			changeInY++;
+			if (y < (Level.FRAME_HEIGHT - Level.BLOCK_SIDE))
+			{
+				onABrick = true;
+			}
+		}
 	}
 	
 	public void move ()
