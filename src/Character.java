@@ -59,7 +59,7 @@ public class Character extends JFrame
 			int yOfBrick = y / Level.BLOCK_SIDE;
 			if (bricks[xOfBrick][yOfBrick])
 			{
-				if (y < Level.BLOCK_SIDE * yOfBrick)
+				if (y + SIZE < Level.BLOCK_SIDE * yOfBrick)
 				{
 					onABrick = true;
 				}
