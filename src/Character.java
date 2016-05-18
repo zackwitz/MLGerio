@@ -56,16 +56,9 @@ public class Character implements JFrame {
 		}
 	}
 
-	public void draw (Graphics g)
+	public int getY ()
 	{
-		if (facingLeft)
-		{
-			g.drawImage(merioLeft, x, y, x+SIZE, y, x, y+SIZE, x+SIZE, y+SIZE, null)
-		}
-		else
-		{
-			g.drawImage(merioRight, x, y, x+SIZE, y, x, y+SIZE, x+SIZE, y+SIZE, null)
-		}
+		return y;
 	}
 
 
