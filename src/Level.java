@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
-
 public class Level
 {
 	final static int FRAME_WIDTH = 1200;
@@ -64,7 +63,7 @@ public class Level
 	public void paintBricks(Graphics g)
 	{
 		int start = paintLevelFrom;
-		g.setColor(Color.white);
+		g.setColor(new Color(88, 224, 245));
 		g.fillRect(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
 		if (start > bricks[0].length * BLOCK_SIDE)
 		{
@@ -75,7 +74,7 @@ public class Level
 			start = 0;
 		}
 		final int BLOCKS_BEFORE_START = start / BLOCK_SIDE;
-		g.setColor(Color.black);
+		
 		
 		//draw outline of grid
 //		for (int i = BLOCK_SIDE - (start % BLOCK_SIDE); i < FRAME_WIDTH;
@@ -89,6 +88,7 @@ public class Level
 //		}
 
 		//fill in correct spaces
+		g.setColor(new Color(184, 124, 80));
 		for (int row = 0; row < BLOCKS_VERT; row++)
 		{
 			for (int col = 0; col < BLOCKS_HOR; col++)
@@ -146,5 +146,5 @@ public class Level
 		}
 		return file;
 	}
-	
+
 }
