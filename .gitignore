@@ -26,3 +26,5 @@ bin/Gamestate.class
 bin/Hole.class
 
 bin/Platform.class
+
+*.class
