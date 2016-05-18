@@ -5,32 +5,23 @@ import javax.swing.*;
 public class Character implements JFrame {
 
 	private final int SIZE = 75;
-	private final int SPEED = 3;
 	private final int JUMP_STRENGTH = 24;
 	private int accel = 0;
 	private int x;
 	private int y;
 	private boolean jumping = false;
-	private boolean facingLeft = false;
-	private static Image merioLeft;
-	private static Image merioRight;
 
 	public Character (int initX, int initY)
 	{
 		x = initX;
 		y = initY;
 	}
-	
-	public void setDirection ( String direction )
-	{
-		if (direction.equals("left"))
-			facingLeft = true;
-		else if (direction.equals("right"))
-			facingLeft = false;
-		else
-			return null;
-	}
 
+	public int getY ()
+	{
+		return y;
+	}
+	
 	public void move ()
 	{
 		accelerate();
@@ -56,10 +47,7 @@ public class Character implements JFrame {
 		}
 	}
 
-	public int getY ()
-	{
-		return y;
-	}
+	
 
 
 }
