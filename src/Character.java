@@ -1,5 +1,6 @@
 import java.awt.Graphics;
 import java.util.*;
+import javax.swing.*;
 
 public class Character implements JFrame {
 
@@ -11,28 +12,24 @@ public class Character implements JFrame {
 	private int y;
 	private boolean jumping = false;
 	private boolean facingLeft = false;
+	private static Image merioLeft;
+	private static Image merioRight;
 
-	BufferedImage merioLeft = null;
-	try {
-		merioLeft = ImageIO.read(new File("MerioLeft.png"));
-	} catch (IOException e) {
-	}
-
-	BufferedImage merioRight = null;
-	try {
-		merioRight = ImageIO.read(new File("MerioRight.png"));
-	} catch (IOException e) {
-	}
-
-	public Character (itn initX, int initY)
+	public Character (int initX, int initY)
 	{
 		x = initX;
 		y = initY;
 	}
 	
-	
-	
-	
+	public void setDirection ( String direction )
+	{
+		if (direction.equals("left"))
+			facingLeft = true;
+		else if (direction.equals("right"))
+			facingLeft = false;
+		else
+			return null;
+	}
 
 	public void move ()
 	{
