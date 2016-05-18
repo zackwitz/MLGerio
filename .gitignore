@@ -14,3 +14,15 @@ hs_err_pid*
 *.class
 
 *.class
+
+bin/Level.class
+
+bin/Character.class
+
+bin/Character.class
+
+bin/Gamestate.class
+
+bin/Hole.class
+
+bin/Platform.class

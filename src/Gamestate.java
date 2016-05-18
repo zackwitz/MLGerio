@@ -1,6 +1,8 @@
 import java.awt.*;
 import java.awt.event.*;
-import javax.swing.*; 			
+import javax.swing.*; 
+import javax.*;
+
 
 public class Gamestate extends JFrame implements KeyListener, ActionListener
 {
@@ -12,6 +14,9 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 	final static int BLOCKS_HOR = FRAME_WIDTH / BLOCK_SIDE;
 	private static final int DELAY_IN_MILLISEC = 50;
 	private static Level level1;
+	public static final Image imageRight = new ImageIcon("MerioRight.png").getImage();
+	public static final Image imageLeft = new ImageIcon("MerioLeft.png").getImage();
+	private static boolean facingRight = true;
 
 	public Gamestate()
 	{
@@ -41,12 +46,12 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 		if(keyCode == KeyEvent.VK_RIGHT)
 		{
 			level1.moveRight();
-			// switch model right
+			facingRight = true;
 		}
 		else if(keyCode == KeyEvent.VK_LEFT)
 		{
 			level1.moveLeft();
-			// switch model to left
+			facingRight = false;
 		}
 		else if(keyCode == KeyEvent.VK_SPACE)
 		{
@@ -64,8 +69,18 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 	
 	public void paint(Graphics g) 		
 	{
-		
+		if(facingRight)
+		{
+		g.drawImage(imageRight,563, 600, this);
 		level1.paintBricks(g);
+		g.drawImage(imageRight,563, 600, this);
+		}
+		else
+		{
+			g.drawImage(imageLeft,563, 600, this);
+			level1.paintBricks(g);
+			g.drawImage(imageLeft,563, 600, this);
+		}
 	}
 
 }
