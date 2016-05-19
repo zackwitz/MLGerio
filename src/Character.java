@@ -9,7 +9,7 @@ public class Character extends JFrame
 {
 	private final int MOVE_CHAR_BY = Level.MOVE_LEVEL_BY;
 	private final int SIZE = 75;
-	private final int JUMP_STRENGTH = 24;
+	private final int JUMP_STRENGTH = -30;
 	private int accel = 0;
 	private int x;
 	private int y;
@@ -74,11 +74,9 @@ public class Character extends JFrame
 
 	public void jump()
 	{
-		if (!jumping)
-		{
-			accel = JUMP_STRENGTH;
-			jumping = true;
-		}
+		onABrick = false;
+		currentAcceleration = JUMP_STRENGTH;
+
 	}
 
 	public void accelerate()
