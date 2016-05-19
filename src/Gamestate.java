@@ -21,12 +21,12 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 
 	public Gamestate()
 	{
-		Timer clock = new Timer(DELAY_IN_MILLISEC, this);
-		clock.start();
+		
 	}
 
 	public static void main(String[] args)
 	{
+
 		Gamestate gs = new Gamestate();
 		gs.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		gs.setTitle("MLGerio");			 				
@@ -34,16 +34,19 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 		gs.setVisible(true);
 		gs.addKeyListener(gs);
 		level1 = new Level();
-
+		Timer clock = new Timer(DELAY_IN_MILLISEC, gs);
+		clock.start();
 	}	
 	public void actionPerformed(ActionEvent e)
 	{
+		merio.fall(level1.getBricks());
 		repaint();
 	}
 
 	public void keyPressed(KeyEvent e)
 	{
 		int keyCode = e.getKeyCode();
+		//merio.fall(level1.getBricks());
 		if(keyCode == KeyEvent.VK_RIGHT)
 		{
 			level1.moveRight();

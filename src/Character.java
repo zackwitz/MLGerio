@@ -13,6 +13,7 @@ public class Character extends JFrame
 	private int accel = 0;
 	private int x;
 	private int y;
+	private int currentAcceleration;
 	private boolean jumping;
 	private boolean onABrick;
 
@@ -23,6 +24,7 @@ public class Character extends JFrame
 		y = 150;
 		jumping = false;
 		onABrick = false;
+		currentAcceleration = 0;
 	}
 
 	public int getY ()
@@ -42,25 +44,22 @@ public class Character extends JFrame
 		}
 	}
 
-	/**
-	 * DOES NOT WORK
-	 * 
-	 * @param bricks
-	 */
 	public void fall(boolean [][] bricks)
 	{
-		int changeInY = 0;
-		while (!onABrick)
+		currentAcceleration += 1;
+		if (!onABrick)
 		{
-			y -= changeInY;
-			changeInY++;
-
-			int xOfBrick = x / Level.BLOCK_SIDE;
-			int yOfBrick = y / Level.BLOCK_SIDE;
-			if (bricks[xOfBrick][yOfBrick])
+			y += currentAcceleration;
+			System.out.println(y);
+			int bricksIn = x / Level.BLOCK_SIDE;
+			int bricksDown = y / Level.BLOCK_SIDE;
+			if (bricks[bricksDown][bricksIn])
 			{
-				if (y + SIZE < Level.BLOCK_SIDE * yOfBrick)
-				{
+				if (y + SIZE > Level.BLOCK_SIDE * bricksDown)
+				{	
+					y = Level.BLOCK_SIDE * bricksDown - SIZE;
+					System.out.println(y);
+					currentAcceleration = 0;
 					onABrick = true;
 				}
 			}
