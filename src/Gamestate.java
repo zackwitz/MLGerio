@@ -21,7 +21,7 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 
 	public Gamestate()
 	{
-		
+
 	}
 
 	public static void main(String[] args)
@@ -49,15 +49,20 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 		//merio.fall(level1.getBricks());
 		if(keyCode == KeyEvent.VK_RIGHT)
 		{
-			level1.moveRight();
 			facingRight = true;
-			merio.changeXPos(facingRight);
+			if (merio.changeXPos(level1.getBricks(), facingRight))
+			{
+				level1.moveRight();	
+			}
 		}
 		else if(keyCode == KeyEvent.VK_LEFT)
 		{
-			level1.moveLeft();
+
 			facingRight = false;
-			merio.changeXPos(facingRight);
+			if (merio.changeXPos(level1.getBricks(), facingRight))
+			{
+				level1.moveLeft();
+			}
 		}
 		else if(keyCode == KeyEvent.VK_SPACE)
 		{
