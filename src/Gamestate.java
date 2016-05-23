@@ -40,17 +40,21 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 	public void actionPerformed(ActionEvent e)
 	{
 		repaint();
+	// 	merio.setOnABrick(false);
+		if (!merio.isOnABrick(level1.getBricks()))
+		{
+			merio.setOnABrick(false);
+		}
 		merio.fall(level1.getBricks());
 	}
 
 	public void keyPressed(KeyEvent e)
 	{
 		int keyCode = e.getKeyCode();
-		//merio.fall(level1.getBricks());
 		if(keyCode == KeyEvent.VK_RIGHT)
 		{
 			facingRight = true;
-			if (merio.changeXPos(level1.getBricks(), facingRight))
+			if (merio.canChangeXPos(level1.getBricks(), facingRight))
 			{
 				level1.moveRight();	
 			}
@@ -59,7 +63,7 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 		{
 
 			facingRight = false;
-			if (merio.changeXPos(level1.getBricks(), facingRight))
+			if (merio.canChangeXPos(level1.getBricks(), facingRight))
 			{
 				level1.moveLeft();
 			}
