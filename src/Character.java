@@ -40,19 +40,14 @@ public class Character extends JFrame
 	public boolean isOnABrick(boolean [][] bricks)
 	{
 		int bricksIn = x / Level.BLOCK_SIDE;
-		int bricksDown = y / Level.BLOCK_SIDE;
-		System.out.println(x + ", " + y);
-		System.out.println(bricksIn + ", " + bricksDown);
-		if (bricks[bricksDown][bricksIn] || bricks[bricksDown][bricksIn + 1])
+		int bricksDown = (y / Level.BLOCK_SIDE) + 1;
+		if (!(bricks[bricksDown][bricksIn] || bricks[bricksDown][bricksIn + 1]))
 		{
-			if (y + SIZE >= Level.BLOCK_SIDE * bricksDown)
-			{
-				onABrick = true;
-			}
+			onABrick = false;
 		}
 		else
 		{
-			onABrick = false;
+			onABrick = true;
 		}
 		return onABrick;
 	}
@@ -96,28 +91,34 @@ public class Character extends JFrame
 		}
 		currentSpeed += ACCELERATION;
 		
-		if (!isOnABrick(bricks))
+		if (!onABrick)
 		{
 			y += currentSpeed;
-			
+			int bricksIn = x / Level.BLOCK_SIDE;
+			int bricksDown = (y / Level.BLOCK_SIDE) + 1;
+			System.out.println(x + ", " + y);
+			System.out.println(bricksIn + ", " + bricksDown);
+			if (bricks[bricksDown][bricksIn] || bricks[bricksDown][bricksIn + 1])
+			if (y + SIZE >= Level.BLOCK_SIDE * bricksDown)
+			{
+				y = Level.BLOCK_SIDE * bricksDown - SIZE;
+				onABrick = true;
+				currentSpeed = 0;
+				canJump = true;
+				onABrick = true;
+			}
 		}
-		if (isOnABrick(bricks))
-		{
-			y = Level.BLOCK_SIDE * (y / Level.BLOCK_SIDE) - SIZE;
-			System.out.println(y);
-			currentSpeed = 0;
-			canJump = true;
-			onABrick = true;
-		}
+		
 	}
 
-	public void jump()
+	public void jump(boolean [][] bricks)
 	{
 		if (canJump)
 		{
 			canJump = false;
 			onABrick = false;
 			currentSpeed = JUMP_STRENGTH;
+			fall(bricks);
 		}
 	}
 
