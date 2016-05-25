@@ -60,6 +60,11 @@ public class Level
 		paintLevelFrom -= MOVE_LEVEL_BY;
 	}
 	
+	public void setPaintLevelFrom(int from)
+	{
+		paintLevelFrom = from;
+	}
+	
 	public void paintBricks(Graphics g)
 	{
 		int start = paintLevelFrom;

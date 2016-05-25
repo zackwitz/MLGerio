@@ -27,6 +27,15 @@ public class Character extends JFrame
 		canJump = true;
 	}
 
+	public void restartPosition()
+	{
+		x = 563;
+		y = 150;
+		onABrick = false;
+		currentSpeed = 0;
+		canJump = true;
+	}
+	
 	public int getY ()
 	{
 		return y;

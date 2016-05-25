@@ -51,15 +51,13 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 	public void keyPressed(KeyEvent e)
 	{
 		int keyCode = e.getKeyCode();
-		if (finished)
+		if (keyCode == KeyEvent.VK_R)
 		{
-			if (keyCode == KeyEvent.VK_R)
-			{
-				merio = new Character();
-				finished = false;
-			}
+			level1.setPaintLevelFrom(0);
+			merio.restartPosition();
+			finished = false;
 		}
-		else
+		if (!finished)
 		{
 			if(keyCode == KeyEvent.VK_RIGHT)
 			{
