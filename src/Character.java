@@ -9,7 +9,7 @@ public class Character extends JFrame
 {
 	private final int MOVE_CHAR_BY = Level.MOVE_LEVEL_BY;
 	private final int SIZE = 75;
-	private int JUMP_STRENGTH = -40;
+	private int JUMP_STRENGTH = -30;
 	private int ACCELERATION = 2;
 	private int x;
 	private int y;
