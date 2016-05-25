@@ -7,16 +7,16 @@ import javax.*;
 
 public class Character extends JFrame
 {
-	private final int MOVE_CHAR_BY = Level.MOVE_LEVEL_BY;
-	private final int SIZE = 75;
-	private int JUMP_STRENGTH = -30;
-	private int ACCELERATION = 2;
+	final static int MOVE_CHAR_BY = Level.MOVE_LEVEL_BY;
+	final static int SIZE = 75;
+	int JUMP_STRENGTH = -30;
+	int ACCELERATION = 2;
+	
 	private int x;
 	private int y;
 	private int currentSpeed;
 	private boolean onABrick;
 	private boolean canJump;
-
 
 	public Character()
 	{
@@ -34,6 +34,11 @@ public class Character extends JFrame
 		onABrick = false;
 		currentSpeed = 0;
 		canJump = true;
+	}
+	
+	public void setY(int newY)
+	{
+		y = newY;
 	}
 	
 	public int getY ()
