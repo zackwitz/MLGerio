@@ -45,13 +45,9 @@ public class Character extends JFrame
 	public boolean isOnABrick(boolean [][] bricks)
 	{
 		int bricksIn = x / Level.BLOCK_SIDE;
-<<<<<<< HEAD
-		int bricksDown = y / Level.BLOCK_SIDE;
-		if (bricks[bricksDown][bricksIn] || bricks[bricksDown][bricksIn + 1])
-=======
 		int bricksDown = (y / Level.BLOCK_SIDE) + 1;
 		if (!(bricks[bricksDown][bricksIn] || bricks[bricksDown][bricksIn + 1]))
->>>>>>> origin/master
+
 		{
 			onABrick = false;
 		}
@@ -104,20 +100,8 @@ public class Character extends JFrame
 		if (!onABrick)
 		{
 			y += currentSpeed;
-<<<<<<< HEAD
-			
-		}
-		if (isOnABrick(bricks))
-		{
-			y = Level.BLOCK_SIDE * (y / Level.BLOCK_SIDE) - SIZE;
-			currentSpeed = 0;
-			canJump = true;
-			onABrick = true;
-=======
 			int bricksIn = x / Level.BLOCK_SIDE;
 			int bricksDown = (y / Level.BLOCK_SIDE) + 1;
-			System.out.println(x + ", " + y);
-			System.out.println(bricksIn + ", " + bricksDown);
 			if (bricks[bricksDown][bricksIn] || bricks[bricksDown][bricksIn + 1])
 			if (y + SIZE >= Level.BLOCK_SIDE * bricksDown)
 			{
@@ -127,7 +111,6 @@ public class Character extends JFrame
 				canJump = true;
 				onABrick = true;
 			}
->>>>>>> origin/master
 		}
 		
 	}
