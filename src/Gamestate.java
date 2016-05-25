@@ -16,6 +16,7 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 	private static Level level1;
 	public static final Image imageRight = new ImageIcon("MerioRight.png").getImage();
 	public static final Image imageLeft = new ImageIcon("MerioLeft.png").getImage();
+	public static final Image win = new ImageIcon("Win.png").getImage();
 	public static final Character merio = new Character();
 	private static boolean facingRight = true;
 
@@ -39,6 +40,7 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 	}	
 	public void actionPerformed(ActionEvent e)
 	{
+
 		repaint();
 	// 	merio.setOnABrick(false);
 		if (!merio.isOnABrick(level1.getBricks()))
@@ -72,6 +74,7 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 		{
 			merio.jump();
 		}
+		System.out.println(merio.getX());
 	}
 
 	public void keyTyped(KeyEvent e)
@@ -93,6 +96,13 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 		{
 			level1.paintBricks(g);
 			g.drawImage(imageLeft, 563, merio.getY(), this);
+		}
+		if(merio.getX() >= 650)
+		{
+			g.setColor(Color.black);
+			g.drawImage(win, 0 , 0 , this);
+			
+			
 		}
 	}
 

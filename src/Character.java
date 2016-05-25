@@ -31,6 +31,11 @@ public class Character extends JFrame
 	{
 		return y;
 	}
+	
+	public int getX()
+	{
+		return x;
+	}
 
 	public boolean getOnABrick()
 	{
@@ -41,8 +46,6 @@ public class Character extends JFrame
 	{
 		int bricksIn = x / Level.BLOCK_SIDE;
 		int bricksDown = y / Level.BLOCK_SIDE;
-		System.out.println(x + ", " + y);
-		System.out.println(bricksIn + ", " + bricksDown);
 		if (bricks[bricksDown][bricksIn] || bricks[bricksDown][bricksIn + 1])
 		{
 			if (y + SIZE >= Level.BLOCK_SIDE * bricksDown)
@@ -104,7 +107,6 @@ public class Character extends JFrame
 		if (isOnABrick(bricks))
 		{
 			y = Level.BLOCK_SIDE * (y / Level.BLOCK_SIDE) - SIZE;
-			System.out.println(y);
 			currentSpeed = 0;
 			canJump = true;
 			onABrick = true;
