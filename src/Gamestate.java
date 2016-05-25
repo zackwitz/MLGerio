@@ -80,7 +80,6 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 			{
 				merio.jump(level1.getBricks());
 			}
-			System.out.println(merio.getX());
 		}
 	}
 
