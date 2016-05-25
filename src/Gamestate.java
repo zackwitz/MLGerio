@@ -17,8 +17,9 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 	public static final Image imageRight = new ImageIcon("MerioRight.png").getImage();
 	public static final Image imageLeft = new ImageIcon("MerioLeft.png").getImage();
 	public static final Image win = new ImageIcon("Win.png").getImage();
-	public static final Character merio = new Character();
+	public static Character merio = new Character();
 	private static boolean facingRight = true;
+	private static boolean finished = false;
 
 	public Gamestate()
 	{
@@ -40,9 +41,7 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 	}	
 	public void actionPerformed(ActionEvent e)
 	{
-
 		repaint();
-		//	merio.setOnABrick(false);
 		if(!merio.isOnABrick(level1.getBricks()))
 		{
 			merio.fall(level1.getBricks());
@@ -52,28 +51,39 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 	public void keyPressed(KeyEvent e)
 	{
 		int keyCode = e.getKeyCode();
-		if(keyCode == KeyEvent.VK_RIGHT)
+		if (finished)
 		{
-			facingRight = true;
-			if (merio.canChangeXPos(level1.getBricks(), facingRight))
+			if (keyCode == KeyEvent.VK_R)
 			{
-				level1.moveRight();	
+				merio = new Character();
+				finished = false;
 			}
 		}
-		else if(keyCode == KeyEvent.VK_LEFT)
+		else
 		{
+			if(keyCode == KeyEvent.VK_RIGHT)
+			{
+				facingRight = true;
+				if (merio.canChangeXPos(level1.getBricks(), facingRight))
+				{
+					level1.moveRight();	
+				}
+			}
+			else if(keyCode == KeyEvent.VK_LEFT)
+			{
 
-			facingRight = false;
-			if (merio.canChangeXPos(level1.getBricks(), facingRight))
-			{
-				level1.moveLeft();
+				facingRight = false;
+				if (merio.canChangeXPos(level1.getBricks(), facingRight))
+				{
+					level1.moveLeft();
+				}
 			}
+			else if(keyCode == KeyEvent.VK_SPACE)
+			{
+				merio.jump(level1.getBricks());
+			}
+			System.out.println(merio.getX());
 		}
-		else if(keyCode == KeyEvent.VK_SPACE)
-		{
-			merio.jump(level1.getBricks());
-		}
-		System.out.println(merio.getX());
 	}
 
 	public void keyTyped(KeyEvent e)
@@ -96,12 +106,11 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 			level1.paintBricks(g);
 			g.drawImage(imageLeft, 563, merio.getY(), this);
 		}
-		if(merio.getX() >= 650)
+		if(merio.getX() >= 6450)
 		{
 			g.setColor(Color.black);
 			g.drawImage(win, 0 , 0 , this);
-			
-			
+			finished = true;
 		}
 	}
 
