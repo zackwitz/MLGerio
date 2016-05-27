@@ -48,6 +48,11 @@ public class Character extends JFrame
 		y = newY;
 	}
 
+	public void setX(int newX)
+	{
+		x = newX;
+	}
+
 	public int getY ()
 	{
 		return y;
@@ -62,7 +67,7 @@ public class Character extends JFrame
 	{
 		return onABrick;
 	}
-	
+
 	public void setOnABrick(boolean isOnABrick)
 	{
 		onABrick = isOnABrick;
@@ -150,4 +155,18 @@ public class Character extends JFrame
 		}
 	}
 
+	public boolean touchesEnemy(Enemy [] enemies)
+	{
+		for (Enemy nextEnemy: enemies)
+		{
+			if (x >= nextEnemy.getX() && x <= nextEnemy.getX() + SIZE)
+			{
+				if (y >= nextEnemy.getY() && y <= nextEnemy.getY() + SIZE)
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 }
