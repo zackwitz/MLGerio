@@ -26,9 +26,11 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 	final static int BLOCK_SIDE = 75;
 	final static int BLOCKS_VERT = FRAME_HEIGHT / BLOCK_SIDE;
 	final static int BLOCKS_HOR = FRAME_WIDTH / BLOCK_SIDE;
-	final static int DIFFICULTY = 50;
+	final static int ENEMY_X_POS = 3500;
+	final static int ENEMY_Y_POS = 600;
 	private static final int DELAY_IN_MILLISEC = 50;
 	private static Level level1;
+	private static Enemy onlyEnemy;
 	private static Enemy [] enemies;
 	public static final Image imageRight = new ImageIcon("MerioRight.png").getImage();
 	public static final Image imageLeft = new ImageIcon("MerioLeft.png").getImage();
@@ -53,16 +55,7 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 		gs.setVisible(true);
 		gs.addKeyListener(gs);
 		level1 = new Level();
-		Random rand = new Random();
-		enemies = new Enemy [DIFFICULTY];
-		for (int numEnemies = 0; numEnemies < DIFFICULTY; numEnemies++)
-		{
-			int totalWidth = level1.getBricks()[0].length * BLOCK_SIDE;
-			int enemyX = rand.nextInt(totalWidth - BLOCK_SIDE);
-			int enemyY = rand.nextInt(FRAME_HEIGHT - BLOCK_SIDE);
-			Enemy nextEnemy = new Enemy(enemyX, enemyY);
-			enemies[numEnemies] = nextEnemy;
-		}
+		onlyEnemy = new Enemy(ENEMY_X_POS, ENEMY_Y_POS);
 		Timer clock = new Timer(DELAY_IN_MILLISEC, gs);
 		clock.start();  //start the timer and the clock
 	}	
@@ -86,6 +79,8 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 		{
 			level1.setPaintLevelFrom(0);
 			merio.restartPosition();
+			onlyEnemy.setX(ENEMY_X_POS);
+			onlyEnemy.setY(ENEMY_Y_POS);
 			finished = false;
 		}
 		if (!finished)
@@ -96,10 +91,7 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 				if (merio.canChangeXPos(level1.getBricks(), facingRight))
 				{
 					level1.moveRight();	
-					for (Enemy next: enemies)
-					{
-						next.moveEnemyLeft();
-					}
+					onlyEnemy.moveEnemyLeft();
 				}
 			}
 			else if(keyCode == KeyEvent.VK_LEFT) //moves the character left
@@ -109,10 +101,7 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 				if (merio.canChangeXPos(level1.getBricks(), facingRight))
 				{
 					level1.moveLeft();
-					for (Enemy next: enemies)
-					{
-						next.moveEnemyRight();
-					}
+					onlyEnemy.moveEnemyRight();
 				}
 			}
 			else if(keyCode == KeyEvent.VK_SPACE) //makes the character jump
@@ -134,10 +123,7 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 	public void paint(Graphics g) //paints the screen and everything on it
 	{
 		level1.paintBricks(g);
-		for (Enemy next: enemies)
-		{
-			g.drawImage(enemy, next.getX(), next.getY(), this);
-		}
+		g.drawImage(enemy, onlyEnemy.getX(), onlyEnemy.getY(), this);
 		if(facingRight) //merio facing right
 		{
 			g.drawImage(imageRight, 563, merio.getY(), this);
@@ -146,7 +132,7 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 		{
 			g.drawImage(imageLeft, 563, merio.getY(), this);
 		}
-		if(merio.getX() >= 6450) //changes to win screen
+		if (merio.getX() >= 6450) //changes to win screen
 		{
 			g.setColor(Color.black);
 			g.drawImage(win, 0 , 0 , this);
@@ -158,13 +144,18 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 			g.drawImage(lose, 0, 0, this);
 			finished = true;
 		}
-		if (merio.touchesEnemy(enemies))
+		if (merio.getX() + BLOCK_SIDE >= ENEMY_X_POS &&
+				merio.getX() <= ENEMY_X_POS + BLOCK_SIDE)
 		{
-			g.setColor(Color.black);
-			g.drawImage(lose, 0, 0, this);
-			finished = true;
+			if (merio.getY() + BLOCK_SIDE >= ENEMY_Y_POS &&
+					merio.getY() <= ENEMY_Y_POS + BLOCK_SIDE)
+			{
+				g.setColor(Color.black);
+				g.drawImage(lose, 0, 0, this);
+				finished = true;
+			}
 		}
-		
+
 	}
 
 }

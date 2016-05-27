@@ -131,6 +131,7 @@ public class Character extends JFrame
 			int bricksIn = x / Level.BLOCK_SIDE;
 			int bricksDown = (y / Level.BLOCK_SIDE) + 1;
 			if (bricks[bricksDown][bricksIn] || bricks[bricksDown][bricksIn + 1])
+			{
 				if (y + SIZE >= Level.BLOCK_SIDE * bricksDown)
 				{
 					y = Level.BLOCK_SIDE * bricksDown - SIZE;
@@ -139,34 +140,19 @@ public class Character extends JFrame
 					canJump = true;
 					onABrick = true;
 				}
-		}
-
-	}
-
-	public void jump(boolean [][] bricks)
-	{
-		//allow the character to jump by adding jump strength
-		if (canJump)
-		{
-			canJump = false;
-			onABrick = false;
-			currentSpeed = JUMP_STRENGTH;
-			fall(bricks);
-		}
-	}
-
-	public boolean touchesEnemy(Enemy [] enemies)
-	{
-		for (Enemy nextEnemy: enemies)
-		{
-			if (x >= nextEnemy.getX() && x <= nextEnemy.getX() + SIZE)
-			{
-				if (y >= nextEnemy.getY() && y <= nextEnemy.getY() + SIZE)
-				{
-					return true;
-				}
 			}
 		}
-		return false;
 	}
+
+public void jump(boolean [][] bricks)
+{
+	//allow the character to jump by adding jump strength
+	if (canJump)
+	{
+		canJump = false;
+		onABrick = false;
+		currentSpeed = JUMP_STRENGTH;
+		fall(bricks);
+	}
+}
 }
