@@ -143,7 +143,7 @@ public class Character extends JFrame
 		//allow the character to jump by adding jump strength
 		if (canJump)
 		{
-			//canJump = false;
+			canJump = false;
 			onABrick = false;
 			currentSpeed = JUMP_STRENGTH;
 			fall(bricks);
