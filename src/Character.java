@@ -62,6 +62,14 @@ public class Character extends JFrame
 	{
 		return onABrick;
 	}
+<<<<<<< HEAD
+=======
+	
+	public void setOnABrick(boolean isOnABrick)
+	{
+		onABrick = isOnABrick;
+	}
+>>>>>>> origin/master
 
 	public boolean isOnABrick(boolean [][] bricks)
 	{
@@ -80,15 +88,19 @@ public class Character extends JFrame
 		return onABrick;
 	}
 
+<<<<<<< HEAD
 
 	public void setOnABrick(boolean isOnABrick)
 	{
 		onABrick = isOnABrick;
 	}
 
+=======
+	
+>>>>>>> origin/master
 	public boolean canChangeXPos(boolean [][] bricks, boolean right)
 	{
-		int bricksIn = x / Level.BLOCK_SIDE;
+		int bricksIn = (x + 15) / Level.BLOCK_SIDE;
 		int bricksDown = y / Level.BLOCK_SIDE;
 		//move character in the positive or negative x direction
 		if (right)
