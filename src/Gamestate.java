@@ -113,11 +113,11 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 		}
 		if (merio.getY() >= FRAME_HEIGHT - Character.SIZE)
 		{
-			merio.setY(FRAME_HEIGHT - Character.SIZE);
 			g.setColor(Color.black);
 			g.drawImage(lose, 0, 0, this);
 			finished = true;
 		}
+		
 	}
 
 }

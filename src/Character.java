@@ -56,6 +56,11 @@ public class Character extends JFrame
 		return onABrick;
 	}
 	
+	public void setOnABrick(boolean isOnABrick)
+	{
+		onABrick = isOnABrick;
+	}
+
 	public boolean isOnABrick(boolean [][] bricks)
 	{
 		int bricksIn = x / Level.BLOCK_SIDE;
@@ -73,14 +78,9 @@ public class Character extends JFrame
 	}
 
 	
-	public void setOnABrick(boolean isOnABrick)
-	{
-		onABrick = isOnABrick;
-	}
-
 	public boolean canChangeXPos(boolean [][] bricks, boolean right)
 	{
-		int bricksIn = x / Level.BLOCK_SIDE;
+		int bricksIn = (x + 15) / Level.BLOCK_SIDE;
 		int bricksDown = y / Level.BLOCK_SIDE;
 
 		if (right)
