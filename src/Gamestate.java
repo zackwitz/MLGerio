@@ -1,8 +1,21 @@
+/**
+ * Henry Fortenbaugh, Scott Little, Zack Hurwitz, Ryan Fishbach 
+ * 27 May 2016
+ * Merio End of Year Program
+ * 
+ * This is our end of the year program called MLG_Merio.exe. Our program successfully
+ * reads from a text file and then creates the level consisting of bricks. If Merio 
+ * is not on a brick, he falls simulating gravity, and if the space bar is pressed
+ * Merio can jump once. Also, we have a win and a lose screen that are automatically 
+ * displayed once the user wins or loses. There are currently a few issues with the 
+ * character falling into a brick, but this glitch is minimal. Also, we are in the 
+ * process of adding class hierarchy by adding enemies that can kill Merio. 
+ */
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*; 
 import javax.*;
-
 
 public class Gamestate extends JFrame implements KeyListener, ActionListener
 {
@@ -24,7 +37,7 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 
 	public Gamestate()
 	{
-
+//empty constructor
 	}
 
 	public static void main(String[] args)
@@ -38,21 +51,25 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 		gs.addKeyListener(gs);
 		level1 = new Level();
 		Timer clock = new Timer(DELAY_IN_MILLISEC, gs);
-		clock.start();
+		clock.start(); //start the timer and the clock
 	}	
 	public void actionPerformed(ActionEvent e)
 	{
+		//repaint and constantly have merio fall. 
 		repaint();
 		if(!merio.isOnABrick(level1.getBricks()))
 		{
 			merio.fall(level1.getBricks());
 		}
 	}
-
+	
+/**
+ * This method tests to see if a key is pressed and if so the desired action is preformed.
+ */
 	public void keyPressed(KeyEvent e)
 	{
 		int keyCode = e.getKeyCode();
-		if (keyCode == KeyEvent.VK_R)
+		if (keyCode == KeyEvent.VK_R) //R restarts the game
 		{
 			level1.setPaintLevelFrom(0);
 			merio.restartPosition();
@@ -60,7 +77,7 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 		}
 		if (!finished)
 		{
-			if(keyCode == KeyEvent.VK_RIGHT)
+			if(keyCode == KeyEvent.VK_RIGHT) //moves the character right
 			{
 				facingRight = true;
 				if (merio.canChangeXPos(level1.getBricks(), facingRight))
@@ -68,7 +85,7 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 					level1.moveRight();	
 				}
 			}
-			else if(keyCode == KeyEvent.VK_LEFT)
+			else if(keyCode == KeyEvent.VK_LEFT) //moves the character left
 			{
 
 				facingRight = false;
@@ -77,7 +94,7 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 					level1.moveLeft();
 				}
 			}
-			else if(keyCode == KeyEvent.VK_SPACE)
+			else if(keyCode == KeyEvent.VK_SPACE) //makes the character jump
 			{
 				merio.jump(level1.getBricks());
 			}
@@ -93,25 +110,25 @@ public class Gamestate extends JFrame implements KeyListener, ActionListener
 	{
 	}
 
-	public void paint(Graphics g) 		
+	public void paint(Graphics g) 	 //paints the screen and everything on it	
 	{
-		if(facingRight)
+		if(facingRight) //merio facing right
 		{
 			level1.paintBricks(g);
 			g.drawImage(imageRight, 563, merio.getY(), this);
 		}
-		else
+		else //merio facing left
 		{
 			level1.paintBricks(g);
 			g.drawImage(imageLeft, 563, merio.getY(), this);
 		}
-		if(merio.getX() >= 6450)
+		if(merio.getX() >= 6450) //changes to win screen
 		{
 			g.setColor(Color.black);
 			g.drawImage(win, 0 , 0 , this);
 			finished = true;
 		}
-		if (merio.getY() >= FRAME_HEIGHT - Character.SIZE)
+		if (merio.getY() >= FRAME_HEIGHT - Character.SIZE) //changes to loose screen
 		{
 			merio.setY(FRAME_HEIGHT - Character.SIZE);
 			g.setColor(Color.black);

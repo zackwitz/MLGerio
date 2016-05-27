@@ -1,3 +1,10 @@
+/**
+ * This is the Character class. The character class sets the x and y position,
+ * determines the acceleration and jump strength, and sets the character size. 
+ * The character class also changes the x and y location of the character and
+ * tests to see if the character is on a brick. 
+ */
+
 import java.awt.Graphics;
 import java.util.*;
 import javax.swing.*;
@@ -11,14 +18,14 @@ public class Character extends JFrame
 	final static int SIZE = 75;
 	int JUMP_STRENGTH = -30;
 	int ACCELERATION = 2;
-	
+
 	private int x;
 	private int y;
 	private int currentSpeed;
 	private boolean onABrick;
 	private boolean canJump;
 
-	public Character()
+	public Character() //creates character
 	{
 		x = 563;
 		y = 150;
@@ -35,17 +42,17 @@ public class Character extends JFrame
 		currentSpeed = 0;
 		canJump = true;
 	}
-	
+
 	public void setY(int newY)
 	{
 		y = newY;
 	}
-	
+
 	public int getY ()
 	{
 		return y;
 	}
-	
+
 	public int getX()
 	{
 		return x;
@@ -55,9 +62,10 @@ public class Character extends JFrame
 	{
 		return onABrick;
 	}
-	
+
 	public boolean isOnABrick(boolean [][] bricks)
 	{
+		//tests if the character is on a brick and sets the boolean to true or false
 		int bricksIn = x / Level.BLOCK_SIDE;
 		int bricksDown = (y / Level.BLOCK_SIDE) + 1;
 		if (!(bricks[bricksDown][bricksIn] || bricks[bricksDown][bricksIn + 1]))
@@ -72,7 +80,7 @@ public class Character extends JFrame
 		return onABrick;
 	}
 
-	
+
 	public void setOnABrick(boolean isOnABrick)
 	{
 		onABrick = isOnABrick;
@@ -82,7 +90,7 @@ public class Character extends JFrame
 	{
 		int bricksIn = x / Level.BLOCK_SIDE;
 		int bricksDown = y / Level.BLOCK_SIDE;
-
+		//move character in the positive or negative x direction
 		if (right)
 		{
 			if (!bricks[bricksDown][bricksIn + 1])
@@ -104,33 +112,35 @@ public class Character extends JFrame
 
 	public void fall(boolean [][] bricks)
 	{
+		//change the y value of the character and make the character fall
 		if (y <= 0)
 		{
 			y = 0;
 			currentSpeed = 0;
 		}
 		currentSpeed += ACCELERATION;
-		
+
 		if (!onABrick)
 		{
 			y += currentSpeed;
 			int bricksIn = x / Level.BLOCK_SIDE;
 			int bricksDown = (y / Level.BLOCK_SIDE) + 1;
 			if (bricks[bricksDown][bricksIn] || bricks[bricksDown][bricksIn + 1])
-			if (y + SIZE >= Level.BLOCK_SIDE * bricksDown)
-			{
-				y = Level.BLOCK_SIDE * bricksDown - SIZE;
-				onABrick = true;
-				currentSpeed = 0;
-				canJump = true;
-				onABrick = true;
-			}
+				if (y + SIZE >= Level.BLOCK_SIDE * bricksDown)
+				{
+					y = Level.BLOCK_SIDE * bricksDown - SIZE;
+					onABrick = true;
+					currentSpeed = 0;
+					canJump = true;
+					onABrick = true;
+				}
 		}
-		
+
 	}
 
 	public void jump(boolean [][] bricks)
 	{
+		//allow the character to jump by adding jump strength
 		if (canJump)
 		{
 			canJump = false;

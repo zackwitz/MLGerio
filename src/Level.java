@@ -1,3 +1,9 @@
+
+/**
+ * This is the level class. The level class opens a file containing the location
+ * of every brick and hole. This class also prints the bricks with the right
+ * size and color.  
+ */
 import java.awt.Color;
 import java.awt.Graphics;
 import java.io.File;
@@ -19,13 +25,13 @@ public class Level
 
 	public Level()
 	{
-		paintLevelFrom = 0;
+		paintLevelFrom = 0; //start of level location
 		Scanner file = openTheFile();
 		name = file.nextLine();
 		int height = file.nextInt();
 		int length = file.nextInt();
 		file.nextLine();
-		String [] rows = new String[height];
+		String [] rows = new String[height]; //create array of strings
 		bricks = new boolean[height][length];
 		
 		//fill each space in the level grid with true if brick or else false
@@ -68,8 +74,8 @@ public class Level
 	public void paintBricks(Graphics g)
 	{
 		int start = paintLevelFrom;
-		g.setColor(new Color(88, 224, 245));
-		g.fillRect(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
+		g.setColor(new Color(88, 224, 245)); //color of sky
+		g.fillRect(0, 0, FRAME_WIDTH, FRAME_HEIGHT); //create sky
 		if (start > bricks[0].length * BLOCK_SIDE)
 		{
 			start = bricks[0].length * BLOCK_SIDE;
@@ -93,8 +99,8 @@ public class Level
 //		}
 
 		//fill in correct spaces
-		g.setColor(new Color(184, 124, 80));
-		for (int row = 0; row < BLOCKS_VERT; row++)
+		g.setColor(new Color(184, 124, 80)); //brick color
+		for (int row = 0; row < BLOCKS_VERT; row++) //paint all of the bricks
 		{
 			for (int col = 0; col < BLOCKS_HOR; col++)
 			{
@@ -116,7 +122,7 @@ public class Level
 		}
 	}
 	
-	public void printBricks(boolean[][] level)
+	public void printBricks(boolean[][] level) //prints out our level in X's and ~'s
 	{
 		for (int i = 0; i < level.length; i++)
 		{
