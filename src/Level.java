@@ -86,18 +86,6 @@ public class Level
 		}
 		final int BLOCKS_BEFORE_START = start / BLOCK_SIDE;
 		
-		
-		//draw outline of grid
-//		for (int i = BLOCK_SIDE - (start % BLOCK_SIDE); i < FRAME_WIDTH;
-//				i += BLOCK_SIDE)
-//		{
-//			g.drawLine(i, 0, i, FRAME_HEIGHT);
-//		}
-//		for (int j = 0; j < FRAME_HEIGHT; j += BLOCK_SIDE)
-//		{
-//			g.drawLine(0, j, FRAME_WIDTH, j);
-//		}
-
 		//fill in correct spaces
 		g.setColor(new Color(184, 124, 80)); //brick color
 		for (int row = 0; row < BLOCKS_VERT; row++) //paint all of the bricks
